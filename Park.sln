@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkPathAPI", "ParkPathAPI\ParkPathAPI.csproj", "{BDEA575F-6978-4356-BCE1-B8C26D4D0048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkPathAPI.UnitTests", "ParkPathAPI.UnitTests\ParkPathAPI.UnitTests.csproj", "{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{BDEA575F-6978-4356-BCE1-B8C26D4D0048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDEA575F-6978-4356-BCE1-B8C26D4D0048}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDEA575F-6978-4356-BCE1-B8C26D4D0048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

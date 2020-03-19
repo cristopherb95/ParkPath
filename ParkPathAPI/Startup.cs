@@ -38,6 +38,7 @@ namespace ParkPathAPI
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddScoped<INationalParkRepository,NationalParkRepository>();
+            services.AddScoped<ITrailRepository,TrailRepository>();
             services.AddAutoMapper(typeof(ParkPathMappings));
             services.AddSwaggerGen(options =>
             {
