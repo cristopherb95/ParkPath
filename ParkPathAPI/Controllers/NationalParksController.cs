@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkPathAPI.Models;
@@ -7,8 +9,9 @@ using ParkPathAPI.Repository.IRepository;
 
 namespace ParkPathAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    //[ApiExplorerSettings(GroupName = "ParkOpenAPISpecNationalParks")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class NationalParksController : ControllerBase
     {
@@ -42,6 +45,7 @@ namespace ParkPathAPI.Controllers
         [HttpGet("{nationalParkId}", Name="GetNationalPark")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NationalParkDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         [ProducesDefaultResponseType]
         public IActionResult GetNationalPark(int nationalParkId)
         {
@@ -76,7 +80,7 @@ namespace ParkPathAPI.Controllers
                 return StatusCode(500, ModelState);
             }
             
-            return CreatedAtRoute("GetNationalPark", new { nationalParkId = nationalParkToAdd.Id}, nationalParkToAdd);
+            return CreatedAtRoute("GetNationalPark", new { Version = HttpContext.GetRequestedApiVersion().ToString(), nationalParkId = nationalParkToAdd.Id}, nationalParkToAdd);
         }
 
         [HttpPatch("{nationalParkId}")]
