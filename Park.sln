@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkPathAPI", "ParkPathAPI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkPathAPI.UnitTests", "ParkPathAPI.UnitTests\ParkPathAPI.UnitTests.csproj", "{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkPathMVC", "ParkPathMVC\ParkPathMVC.csproj", "{297D7944-AD09-49BA-B862-6D1F8453CF43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8904D6E9-0168-427F-B5FA-9ADC33A17CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297D7944-AD09-49BA-B862-6D1F8453CF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297D7944-AD09-49BA-B862-6D1F8453CF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297D7944-AD09-49BA-B862-6D1F8453CF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297D7944-AD09-49BA-B862-6D1F8453CF43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
