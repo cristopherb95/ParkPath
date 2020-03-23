@@ -45,7 +45,7 @@ namespace ParkPathAPI.Controllers
         [HttpGet("{nationalParkId}", Name="GetNationalPark")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NationalParkDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Authorize]
+        //[Authorize]
         [ProducesDefaultResponseType]
         public IActionResult GetNationalPark(int nationalParkId)
         {

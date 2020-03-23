@@ -13,5 +13,6 @@
   <ItemGroup>
     <Folder Include="Repository\" />
     <Folder Include="Repository\IRepository\" />
+    <Folder Include="Views\NationalParks\" />
   </ItemGroup>
 </Project>
