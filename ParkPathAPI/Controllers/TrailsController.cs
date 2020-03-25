@@ -25,7 +25,6 @@ namespace ParkPathAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ICollection<TrailDto>))]
-        [Authorize(Roles = "Bob")]
         public IActionResult GetTrails()
         {
             var trails = _trailRepository.GetTrails();
