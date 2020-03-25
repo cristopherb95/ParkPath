@@ -28,5 +28,17 @@ namespace ParkPathAPI.Controllers
             var userToReturn = _mapper.Map<UserToReturnDto>(userFromDb);
             return Ok(userToReturn);
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserToAuthenticateDto userModel)
+        {
+            var isUsernameUnique = _userRepository.IsUniqueUser(userModel.Username);
+            if (!isUsernameUnique)
+            {
+                return BadRequest(new { message = "Username already exists!" });
+            }
+            var userToRegister = _userRepository.Register(userModel.Username, userModel.Password);
+            return Ok();
+        }
     }
 }

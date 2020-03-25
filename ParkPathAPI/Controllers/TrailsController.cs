@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkPathAPI.Models;
@@ -24,6 +25,7 @@ namespace ParkPathAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ICollection<TrailDto>))]
+        [Authorize(Roles = "Bob")]
         public IActionResult GetTrails()
         {
             var trails = _trailRepository.GetTrails();
@@ -35,6 +37,7 @@ namespace ParkPathAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TrailDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetTrail(int trailId)
         {
             var trail = _trailRepository.GetTrail(trailId);
