@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -45,6 +48,11 @@ namespace ParkPathMVC.Controllers
         {
             return View();
         }
+        
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -64,8 +72,15 @@ namespace ParkPathMVC.Controllers
                 return View();
             }
 
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim(ClaimTypes.Name, loggedUser.Username));
+            identity.AddClaim(new Claim(ClaimTypes.Role, loggedUser.Role));
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            
             HttpContext.Session.SetString("JWToken", loggedUser.Token);
 
+            TempData["alert"] = "Welcome " + loggedUser.Username;
             return RedirectToAction(nameof(Index));
         }
 
@@ -86,11 +101,13 @@ namespace ParkPathMVC.Controllers
                 return View();
             }
 
+            TempData["alert"] = "Registration successful!";
             return RedirectToAction(nameof(Login));
         }
 
-        public IActionResult Logout(User user)
+        public async Task<IActionResult> Logout(User user)
         {
+            await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("JWToken", "");
 
             return RedirectToAction(nameof(Index));

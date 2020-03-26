@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using ParkPathMVC.Repository.IRepository;
 
 namespace ParkPathMVC.Controllers
 {
+    [Authorize]
     public class TrailsController : Controller
     {
         private readonly INationalParkRepository _npRepository;
@@ -27,6 +29,7 @@ namespace ParkPathMVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             IEnumerable<NationalPark> nationalParks = await _npRepository.GetAllAsync(SD.NationalParkAPIPath, Token);
@@ -47,7 +50,7 @@ namespace ParkPathMVC.Controllers
             trailsVM.Trail = await _trailRepository.GetAsync(SD.TrailAPIPath, id.GetValueOrDefault(), Token);
 
             if (trailsVM.Trail == null)
-                return NotFound();
+                return RedirectToAction("AccessDenied","Home");
 
             return View(trailsVM);
         }
@@ -92,6 +95,7 @@ namespace ParkPathMVC.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteStatus = await _trailRepository.DeleteAsync(SD.TrailAPIPath, id, Token);

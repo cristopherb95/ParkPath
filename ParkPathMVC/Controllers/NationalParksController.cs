@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkPathMVC.Models;
@@ -6,6 +7,7 @@ using ParkPathMVC.Repository.IRepository;
 
 namespace ParkPathMVC.Controllers
 {
+    [Authorize]
     public class NationalParksController : Controller
     {
         private readonly INationalParkRepository _npRepository;
@@ -22,6 +24,7 @@ namespace ParkPathMVC.Controllers
         }
 
         // GET
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             NationalPark nationalPark = new NationalPark();
@@ -77,6 +80,7 @@ namespace ParkPathMVC.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteStatus = await _npRepository.DeleteAsync(SD.NationalParkAPIPath, id, Token);
