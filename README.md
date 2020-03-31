@@ -1,7 +1,7 @@
 # ParkPath
-Application was done while learning .NET Core 3.1 Web API. It contains CRUD operations for national parks and it's trails, uses authentication and is consumed by .NET Core 3.1 MVC project.
+Application was done while learning .NET Core 3.1 Web API. It contains CRUD operations for national parks and it's trails, uses authentication and is consumed by .NET Core 3.1 MVC project. App is using Code-First approach, Entity Framework Core, MS Sql Server and repository pattern.
 ## API
-API was created with .NET Core 3.1. You can perform CRUD operations on Trails and National Parks and register user or login. API is using Bearer token authentication as well as Admin and User roles. As default, user is registered as admin (just for sample purpose). Versioning was added for potential future releases. Also, sample XML documentation for some parts is included (visible in Swagger).
+API was created with .NET Core 3.1. You can perform CRUD operations on Trails and National Parks and register user or login. API is using Bearer token authentication as well as Admin and User roles. As default, user is registered as admin (just for sample purpose). Versioning was added for potential future releases. Also, sample XML documentation for some parts is included (visible in Swagger). Only GetNationalPark and GetTrail routes and authorized, for checking the correctness of authorization.
 
 ![image](https://user-images.githubusercontent.com/48388060/78028994-2dc28980-7360-11ea-9d78-677d237bb30f.png)
 
